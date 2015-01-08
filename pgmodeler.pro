@@ -24,11 +24,32 @@ macx {
 }
 
 windows {
- PGSQL_LIB = C:/PostgreSQL/9.3/bin/libpq.dll
- PGSQL_INC = C:/PostgreSQL/9.3/include
- XML_INC = C:/Qt/Qt5.3.2/5.3/mingw482_32/include
- XML_LIB = C:/Qt/Qt5.3.2/5.3/mingw482_32/bin/libxml2-2.dll
  QMAKE_CXXFLAGS+="-DHAVE_STRUCT_TIMESPEC"
+
+ contains(QMAKE_TARGET.arch, x86_64) {
+  _WIN64 = 1
+ }
+ win*-msvc* {
+  _WIN_MSVC = 1
+ }
+
+ isEmpty(_WIN64) {
+  PGSQL_DIR = E:\Database\PostgreSQL\9.3_32
+  XML_DIR = E:\CXX\third_party\parser\xml\libxml2\libxml2-2.9.2-win32-x86
+ } else {
+  PGSQL_DIR = E:\Database\PostgreSQL\9.3
+  XML_DIR = E:\CXX\third_party\parser\xml\libxml2\libxml2-2.9.2-win32-x86_64
+ }
+
+ PGSQL_INC = $$PGSQL_DIR\include
+ XML_INC = $$XML_DIR\include
+ isEmpty(_WIN_MSVC) {
+  PGSQL_LIB = $$PGSQL_DIR\bin\libpq.dll
+  XML_LIB = $$XML_DIR\bin\libxml2-2.dll
+ } else {
+  PGSQL_LIB = $$PGSQL_DIR\lib\libpq.lib
+  XML_LIB = $$XML_DIR\lib\libxml2.dll.a
+ }
 }
 
 macx | windows {
@@ -86,7 +107,13 @@ macx:CONFIG-=app_bundle
 #Libraries extension and preffix for each platform
 unix:LIB_PREFIX = lib
 unix:LIB_EXT = so
-windows:LIB_EXT = dll
+windows {
+ isEmpty(_WIN_MSVC) {
+  LIB_EXT = dll
+ } else {
+  LIB_EXT = lib
+ }
+}
 macx:LIB_EXT = dylib
 
 SUBDIRS = libutils \
