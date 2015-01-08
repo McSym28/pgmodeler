@@ -32,6 +32,26 @@
 #include <QDir>
 #include <QDate>
 
+QString _getenv_safe(char *varName) {
+#if _MSC_VER >= 1500
+    // http://msdn.microsoft.com/ru-ru/library/ms175774.aspx
+    char* buf = 0;
+    size_t sz = 0;
+    if (_dupenv_s(&buf, &sz, varName)) {
+        return "";
+    }
+    QString result = QString(buf);
+    free(buf);
+    return result;
+#else
+    char *buf = getenv(varName);
+    if (buf) {
+        return QString(buf);
+    }
+    return "";
+#endif
+}
+
 namespace GlobalAttributes {
 	static const QString
   PGMODELER_VERSION="0.8.0-beta",
@@ -99,21 +119,23 @@ namespace GlobalAttributes {
 		 the DTD's. The solution to this problem is to replace the '\' by the way '/' */
 
 	/*! \brief If the variable is not specified, pgModeler searches the required folder in the current directory "." */
-	SCHEMAS_ROOT_DIR=(getenv("PGMODELER_SCHEMAS_DIR") ? QString(getenv("PGMODELER_SCHEMAS_DIR")).replace("\\","/") : QString("./schemas")),
-	CONFIGURATIONS_DIR=(getenv("PGMODELER_CONF_DIR") ? QString(getenv("PGMODELER_CONF_DIR")).replace("\\","/") : QString("./conf")),
-	LANGUAGES_DIR=(getenv("PGMODELER_LANG_DIR") ? QString(getenv("PGMODELER_LANG_DIR")).replace("\\","/") : QString("./lang")),
-	PLUGINS_DIR=(getenv("PGMODELER_PLUGINS_DIR") ? QString(getenv("PGMODELER_PLUGINS_DIR")).replace("\\","/") : QString("./plugins")),
-	TEMPORARY_DIR=(getenv("PGMODELER_TMP_DIR") ? QString(getenv("PGMODELER_TMP_DIR")).replace("\\","/") : QString("./tmp")),
-	SAMPLES_DIR=(getenv("PGMODELER_SAMPLES_DIR") ? QString(getenv("PGMODELER_SAMPLES_DIR")).replace("\\","/") : QString("./samples")),
+    SCHEMAS_ROOT_DIR=(_getenv_safe("PGMODELER_SCHEMAS_DIR").isEmpty() ? QString("./schemas") : _getenv_safe("PGMODELER_SCHEMAS_DIR")),
+    CONFIGURATIONS_DIR=(_getenv_safe("PGMODELER_CONF_DIR").isEmpty() ? QString("./conf") : _getenv_safe("PGMODELER_CONF_DIR")),
+    LANGUAGES_DIR=(_getenv_safe("PGMODELER_LANG_DIR").isEmpty() ? QString("./lang") : _getenv_safe("PGMODELER_LANG_DIR").replace("\\","/")),
+    PLUGINS_DIR=(_getenv_safe("PGMODELER_PLUGINS_DIR").isEmpty() ? QString("./plugins") : _getenv_safe("PGMODELER_PLUGINS_DIR").replace("\\","/")),
+    TEMPORARY_DIR=(_getenv_safe("PGMODELER_TMP_DIR").isEmpty() ? QString("./tmp") : _getenv_safe("PGMODELER_TMP_DIR").replace("\\","/")),
+    SAMPLES_DIR=(_getenv_safe("PGMODELER_SAMPLES_DIR").isEmpty() ? QString("./samples") : _getenv_safe("PGMODELER_SAMPLES_DIR").replace("\\","/")),
 
 	/*! \brief Crash handler executable path configuration, the user can use the below envvar to set a
 	different location for pgmodeler-ch */
 	#ifndef Q_OS_MAC
-		#ifdef Q_OS_LINUX
-			CRASH_HANDLER_PATH=(getenv("PGMODELER_CHANDLER_PATH") ? QString(getenv("PGMODELER_CHANDLER_PATH")) : QString("./pgmodeler-ch"));
-		#else
-      CRASH_HANDLER_PATH=(getenv("PGMODELER_CHANDLER_PATH") ? QString(getenv("PGMODELER_CHANDLER_PATH")) : QString(".\\pgmodeler-ch.exe"));
-		#endif
+        CRASH_HANDLER_PATH=(_getenv_safe("PGMODELER_CHANDLER_PATH").isEmpty() ?
+            #ifdef Q_OS_LINUX
+                QString("./pgmodeler-ch")
+            #else
+                QString(".\\pgmodeler-ch.exe")
+            #endif
+            : _getenv_safe("PGMODELER_CHANDLER_PATH"));
 	#else
 		//For MacOSX the crash handler path is fixed (inside bundle)
 		CRASH_HANDLER_PATH=MACOS_STARTUP_SCRIPT + " pgmodeler-ch";
