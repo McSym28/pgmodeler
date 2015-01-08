@@ -28,7 +28,7 @@
 #include "view.h"
 #include "basetableview.h"
 
-class GraphicalView: public BaseTableView {
+class LIBOBJRENDERER_API GraphicalView: public BaseTableView {
 	private:
 		Q_OBJECT
 

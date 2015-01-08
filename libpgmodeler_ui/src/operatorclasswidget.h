@@ -35,7 +35,7 @@
 #include <QMetaType>
 Q_DECLARE_METATYPE(OperatorClassElement)
 
-class OperatorClassWidget: public BaseObjectWidget, public Ui::OperatorClassWidget {
+class LIBPGMODELERUI_API OperatorClassWidget: public BaseObjectWidget, public Ui::OperatorClassWidget {
 	private:
 		Q_OBJECT
 

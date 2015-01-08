@@ -29,10 +29,11 @@
 #include "ui_taskprogresswidget.h"
 #include <map>
 #include "utf8string.h"
+#include "dllapi.h"
 
 using namespace std;
 
-class TaskProgressWidget: public QDialog, public Ui::TaskProgressWidget
+class LIBPGMODELERUI_API TaskProgressWidget: public QDialog, public Ui::TaskProgressWidget
 {
 	private:
 		Q_OBJECT

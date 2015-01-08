@@ -35,7 +35,7 @@
 #include <QStringList>
 #include <QTextStream>
 
-using namespace ParsersAttributes;
+//using namespace ParsersAttributes;
 
 enum ObjectType {
 	OBJ_COLUMN,
@@ -74,7 +74,7 @@ enum ObjectType {
 	BASE_TABLE
 };
 
-class BaseObject {
+class LIBPGMODELER_API BaseObject {
 	private:
 		//! brief Current PostgreSQL version used in SQL code generation
 		static QString pgsql_ver;

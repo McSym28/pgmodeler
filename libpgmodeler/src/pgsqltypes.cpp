@@ -712,7 +712,7 @@ vector<UserTypeConfig> PgSQLType::user_types;
 
 PgSQLType::PgSQLType(void)
 {
-	type_idx=offset;
+    type_idx=offset;
 	length=1;
 	precision=-1;
 	dimension=0;
@@ -726,6 +726,15 @@ PgSQLType::PgSQLType(const QString &type_name)
 	precision=-1;
 	dimension=0;
 	with_timezone=false;
+}
+
+PgSQLType::PgSQLType(const char *type_name)
+{
+    (*this)=QString(type_name);
+    length=1;
+    precision=-1;
+    dimension=0;
+    with_timezone=false;
 }
 
 PgSQLType::PgSQLType(void *ptype)
@@ -911,7 +920,7 @@ void PgSQLType::getTypes(QStringList &type_list, bool oids, bool pseudos)
 
 unsigned PgSQLType::operator = (unsigned type_id)
 {
-	if(type_id>=offset)
+    if(type_id>=offset)
 		setUserType(type_id);
 	else if(type_id > 0)
 		BaseType::setType(type_id,offset,types_count);
@@ -921,9 +930,14 @@ unsigned PgSQLType::operator = (unsigned type_id)
 	return(type_idx);
 }
 
+unsigned PgSQLType::operator = (const char *type_name)
+{
+    return ((*this) = QString(type_name));
+}
+
 unsigned PgSQLType::operator = (const QString &type_name)
 {
-	unsigned type_idx, usr_type_idx;
+    unsigned type_idx, usr_type_idx;
 
 	type_idx=getBaseTypeIndex(type_name);
 	usr_type_idx=getUserTypeIndex(type_name, nullptr);
@@ -1001,9 +1015,19 @@ bool PgSQLType::operator == (const QString &type_name)
 	return(type_idx==idx);
 }
 
+bool PgSQLType::operator == (const char *type_name)
+{
+    return((*this)==QString(type_name));
+}
+
 bool PgSQLType::operator != (const QString &type_name)
 {
 	return(!((*this)==type_name));
+}
+
+bool PgSQLType::operator != (const char *type_name)
+{
+    return(!((*this)==type_name));
 }
 
 bool PgSQLType::operator != (PgSQLType type)
@@ -1055,7 +1079,7 @@ bool PgSQLType::isPseudoType(void)
 
 unsigned PgSQLType::operator << (void *ptype)
 {
-	setUserType(ptype);
+    setUserType(ptype);
 	return(type_idx);
 }
 
@@ -1076,7 +1100,7 @@ void PgSQLType::setWithTimezone(bool with_tz)
 
 void PgSQLType::setUserType(unsigned type_id)
 {
-	unsigned lim1, lim2;
+    unsigned lim1, lim2;
 
 	lim1=pseudo_end + 1;
 	lim2=lim1 + PgSQLType::user_types.size();
@@ -1090,7 +1114,7 @@ void PgSQLType::setUserType(unsigned type_id)
 
 void PgSQLType::setUserType(void *ptype)
 {
-	int idx;
+    int idx;
 
 	idx=getUserTypeIndex("",ptype);
 	if(idx <= 0)

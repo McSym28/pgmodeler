@@ -52,6 +52,10 @@
 #include "tagwidget.h"
 #include "eventtriggerwidget.h"
 
+float ModelWidget::MINIMUM_ZOOM=0.05f;
+float ModelWidget::MAXIMUM_ZOOM=4.0f;
+float ModelWidget::ZOOM_INCREMENT=0.05f;
+
 vector<BaseObject *> ModelWidget::copied_objects;
 vector<BaseObject *> ModelWidget::cutted_objects;
 bool ModelWidget::cut_operation=false;
@@ -2127,8 +2131,8 @@ void ModelWidget::pasteObjects(void)
 				 (aux_object &&
 					(dynamic_cast<BaseGraphicObject *>(object) ||
 					 (aux_object->getDatabase()==object->getDatabase()) ||
-						 (aux_object->getCodeDefinition(SchemaParser::SchemaParser::XML_DEFINITION) !=
-							object->getCodeDefinition(SchemaParser::SchemaParser::XML_DEFINITION)))))
+                         (aux_object->getCodeDefinition(SchemaParser::XML_DEFINITION) !=
+                            object->getCodeDefinition(SchemaParser::XML_DEFINITION)))))
 			{
 				//Resolving name conflicts
 				if(obj_type!=OBJ_CAST)

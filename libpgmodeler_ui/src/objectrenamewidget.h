@@ -31,7 +31,7 @@
 #include "operationlist.h"
 #include "messagebox.h"
 
-class ObjectRenameWidget: public QDialog, public Ui::ObjectRenameWidget {
+class LIBPGMODELERUI_API ObjectRenameWidget: public QDialog, public Ui::ObjectRenameWidget {
 	private:
 		Q_OBJECT
 

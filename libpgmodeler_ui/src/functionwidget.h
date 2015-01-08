@@ -32,7 +32,7 @@
 #include "codecompletionwidget.h"
 #include "parameterwidget.h"
 
-class FunctionWidget: public BaseObjectWidget, public Ui::FunctionWidget  {
+class LIBPGMODELERUI_API FunctionWidget: public BaseObjectWidget, public Ui::FunctionWidget  {
 	private:
     Q_OBJECT
 

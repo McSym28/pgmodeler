@@ -409,8 +409,8 @@ QString Exception::getExceptionsText(void)
 	//Get the generated exceptions list
 	this->getExceptionsList(exceptions);
 	itr=exceptions.begin();
-	itr_end=exceptions.end();
-	idx=exceptions.size()-1;
+    itr_end=exceptions.end();
+    idx=exceptions.size()-1;
 
 	//Append all usefull information about the exceptions on the string
 	while(itr!=itr_end)

@@ -30,7 +30,7 @@
 #include "objecttablewidget.h"
 #include "codecompletionwidget.h"
 
-class RuleWidget: public BaseObjectWidget, public Ui::RuleWidget {
+class LIBPGMODELERUI_API RuleWidget: public BaseObjectWidget, public Ui::RuleWidget {
 	private:
 		Q_OBJECT
 

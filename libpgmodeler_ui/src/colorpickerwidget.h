@@ -35,7 +35,7 @@
 
 using namespace std;
 
-class ColorPickerWidget: public QWidget, public Ui::ColorPickerWidget {
+class LIBPGMODELERUI_API ColorPickerWidget: public QWidget, public Ui::ColorPickerWidget {
 	private:
 		Q_OBJECT
 

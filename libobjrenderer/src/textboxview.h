@@ -29,7 +29,7 @@
 #include "baseobjectview.h"
 #include "roundedrectitem.h"
 
-class TextboxView: public BaseObjectView {
+class LIBOBJRENDERER_API TextboxView: public BaseObjectView {
 	private:
 		Q_OBJECT
 

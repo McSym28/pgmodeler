@@ -28,7 +28,7 @@
 #include "ui_sourcecodewidget.h"
 #include "baseobjectwidget.h"
 
-class SourceCodeWidget: public BaseObjectWidget, public Ui::SourceCodeWidget {
+class LIBPGMODELERUI_API SourceCodeWidget: public BaseObjectWidget, public Ui::SourceCodeWidget {
 	private:
 		Q_OBJECT
 

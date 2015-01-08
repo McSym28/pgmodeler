@@ -30,7 +30,7 @@
 #include "modelwidget.h"
 #include <QWidget>
 
-class ObjectFinderWidget : public QWidget, public Ui::ObjectFinderWidget {
+class LIBPGMODELERUI_API ObjectFinderWidget : public QWidget, public Ui::ObjectFinderWidget {
 	private:
 		Q_OBJECT
 

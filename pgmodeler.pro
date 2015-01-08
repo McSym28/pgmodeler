@@ -194,7 +194,8 @@ INCLUDEPATH += $$XML_INC \
                $$PWD/libpgmodeler/src \
                $$PWD/libobjrenderer/src \
                $$PWD/libpgmodeler_ui/src \
-               $$PWD/main/src
+               $$PWD/main/src \
+               $$PWD/include
 
 
 #Deployment configurations

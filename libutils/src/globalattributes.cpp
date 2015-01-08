@@ -15,31 +15,30 @@
 # The complete text of GPLv3 is at LICENSE file on source code root directory.
 # Also, you can get the complete GNU General Public License at <http://www.gnu.org/licenses/>
 */
+#include "globalattributes.h"
 
-/**
-\ingroup libobjrenderer
-\class StyledTextboxView
-\brief This class is only a styled representation of the TextboxView class
-*/
+#include <cstdlib>
 
-#ifndef STYLED_TEXTBOX_VIEW_H
-#define STYLED_TEXTBOX_VIEW_H
-
-#include "textboxview.h"
-
-class LIBOBJRENDERER_API StyledTextboxView: public TextboxView {
-  private:
-    Q_OBJECT
-
-    //! brief Fold indicator appended at bottom-right corner of the object
-    QGraphicsPolygonItem *fold;
-
-  public:
-    StyledTextboxView(Textbox *txtbox, bool override_style=false);
-    ~StyledTextboxView(void);
-
-  protected slots:
-    void configureObject(void);
-};
-
+QString _getenv_safe(QString varName, QString defValue) {
+    QString varValue;
+#if _MSC_VER >= 1500
+    // http://msdn.microsoft.com/ru-ru/library/ms175774.aspx
+    char* buf = 0;
+    size_t sz = 0;
+    if (_dupenv_s(&buf, &sz, varName.toStdString().c_str())) {
+        return defValue;
+    }
+    varValue = QString(buf);
+    free(buf);
+#else
+    char *buf = getenv(varName);
+    if (!buf) {
+        return defValue;
+    }
+    varValue = QString(buf);
 #endif
+    if (varValue.isEmpty()) {
+        return defValue;
+    }
+    return varValue;
+}

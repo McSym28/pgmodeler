@@ -29,7 +29,7 @@
 #include "ui_rolewidget.h"
 #include "objecttablewidget.h"
 
-class RoleWidget: public BaseObjectWidget, public Ui::RoleWidget {
+class LIBPGMODELERUI_API RoleWidget: public BaseObjectWidget, public Ui::RoleWidget {
 	private:
 		Q_OBJECT
 

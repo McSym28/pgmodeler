@@ -1,7 +1,7 @@
 #Unix or Windows directory configuration
-PGMODELER_SRC_DIR=../../
+PGMODELER_SRC_DIR=$$PWD/../..
 
-!exists($$PGMODELER_SRC_DIR) {
+!exists($$PGMODELER_SRC_DIR/) {
  warning("The pgModeler source code directory '$$PGMODELER_SRC_DIR' could not be found! Make sure the variable PGMODELER_SRC_DIR points to a valid location!")
  error("qmake aborted.")
 }
@@ -17,6 +17,12 @@ macx {
  PGMODELER_BASE_DIR=$$PGMODELER_SRC_DIR/build/pgmodeler.app/Contents
  PGMODELER_LIB_DIR=$$PGMODELER_BASE_DIR/Frameworks
  PGMODELER_PLUGIN_DIR=$$PGMODELER_BASE_DIR/MacOS/plugins
+}
+
+windows {
+ !isEmpty(_WIN_MSVC) {
+  INCLUDEPATH += $$OUT_PWD/../../libpgmodeler_ui/src
+ }
 }
 
 CONFIG += plugin qt uic4

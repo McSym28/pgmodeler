@@ -33,7 +33,7 @@
 #include "syntaxhighlighter.h"
 #include <QThread>
 
-class ModelDatabaseDiffForm: public QDialog, public Ui::ModelDatabaseDiffForm {
+class LIBPGMODELERUI_API ModelDatabaseDiffForm: public QDialog, public Ui::ModelDatabaseDiffForm {
 	private:
 		Q_OBJECT
 

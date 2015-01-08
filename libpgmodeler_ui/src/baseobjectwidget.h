@@ -39,7 +39,7 @@
 #include <QMetaType>
 Q_DECLARE_METATYPE(PgSQLType)
 
-class BaseObjectWidget: public QDialog, public Ui::BaseObjectWidget {
+class LIBPGMODELERUI_API BaseObjectWidget: public QDialog, public Ui::BaseObjectWidget {
 	private:
 		Q_OBJECT
 
@@ -48,11 +48,11 @@ class BaseObjectWidget: public QDialog, public Ui::BaseObjectWidget {
 		int pf_min_height, pf_max_height;
 
 	protected:
-    static const int MAX_OBJECT_SIZE=16777215;
-		static const QColor PROT_LINE_BGCOLOR,
-												PROT_LINE_FGCOLOR,
-												RELINC_LINE_BGCOLOR,
-												RELINC_LINE_FGCOLOR;
+        static const int MAX_OBJECT_SIZE=16777215;
+        static const QColor PROT_LINE_BGCOLOR;
+        static const QColor PROT_LINE_FGCOLOR;
+        static const QColor RELINC_LINE_BGCOLOR;
+        static const QColor RELINC_LINE_FGCOLOR;
 
 		//! \brief Parent form used to show the widget as a dialog.
 		BaseForm *parent_form;
@@ -132,15 +132,15 @@ class BaseObjectWidget: public QDialog, public Ui::BaseObjectWidget {
 
 	public:
 		//! \brief Constants used to generate version intervals for version alert frame
-		static const unsigned UNTIL_VERSION=0,
-															VERSIONS_INTERVAL=1,
-															AFTER_VERSION=2;
+        static const unsigned UNTIL_VERSION=0;
+        static const unsigned VERSIONS_INTERVAL=1;
+        static const unsigned AFTER_VERSION=2;
 
 		BaseObjectWidget(QWidget * parent = 0, ObjectType obj_type=BASE_OBJECT);
 
 		virtual ~BaseObjectWidget(void);
 
-		//! \brief Generates a string containing the specified version interval
+        //! \brief Generates a string containing the specified version interval
 		static QString generateVersionsInterval(unsigned ver_interv_id, const QString &ini_ver, const QString &end_ver="");
 
 		/*! \brief Generates a alert frame highlighting the fields of exclusive use on the specified
@@ -171,6 +171,7 @@ class BaseObjectWidget: public QDialog, public Ui::BaseObjectWidget {
 };
 
 template<class Class>
+//LIBPGMODELERUI_API
 void BaseObjectWidget::startConfiguration(void)
 {
 	try

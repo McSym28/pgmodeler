@@ -32,7 +32,7 @@
 #include "relationshipview.h"
 #include "hinttextwidget.h"
 
-class RelationshipConfigWidget: public QWidget, public Ui::RelationshipConfigWidget, public BaseConfigWidget {
+class LIBPGMODELERUI_API RelationshipConfigWidget: public QWidget, public Ui::RelationshipConfigWidget, public BaseConfigWidget {
 	private:
 		Q_OBJECT
 

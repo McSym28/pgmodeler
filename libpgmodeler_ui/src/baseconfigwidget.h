@@ -30,7 +30,7 @@
 #include "parsersattributes.h"
 #include <algorithm>
 
-class BaseConfigWidget {
+class LIBPGMODELERUI_API BaseConfigWidget {
 	protected:
 		XMLParser xmlparser;
 

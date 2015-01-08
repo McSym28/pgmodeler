@@ -3,8 +3,16 @@ include(../pgmodeler.pro)
 TEMPLATE = app
 TARGET = pgmodeler
 
+
 windows:RC_FILE=res/windows_ico.qrc
 windows:RCC_DIR=src/
+
+windows {
+ !isEmpty(_WIN_MSVC) {
+  INCLUDEPATH += $$OUT_PWD/../libpgmodeler_ui/src
+ }
+}
+
 macx:QMAKE_POST_LINK+="cp -r $$PWD/res/Resources $$BASEDIR; \
                        cp $$PWD/res/Info.plist $$BASEDIR; \
                        cp $$PWD/res/PkgInfo $$BASEDIR; \

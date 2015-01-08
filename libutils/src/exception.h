@@ -32,6 +32,7 @@
 #include <vector>
 #include <deque>
 #include "utf8string.h"
+#include "dllapi.h"
 
 using namespace std;
 
@@ -271,7 +272,7 @@ enum ErrorType {
 	ERR_MALFORMED_UNESCAPED_VALUE
 };
 
-class Exception {
+class LIBUTILS_API Exception {
 	private:
 
 		/*! \brief Stores other exceptions before raise the 'this' exception.
@@ -282,8 +283,8 @@ class Exception {
 		static QString messages[ERROR_COUNT][2];
 
 		//! \brief Constants used to access the error details
-    static const unsigned ERROR_CODE=0,
-															ERROR_MESSAGE=1;
+        static const unsigned ERROR_CODE=0;
+        static const unsigned ERROR_MESSAGE=1;
 
 		//! \brief Error type related to the exception
 		ErrorType error_type;

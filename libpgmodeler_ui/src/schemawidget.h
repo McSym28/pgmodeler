@@ -29,7 +29,7 @@
 #include "colorpickerwidget.h"
 #include "ui_schemawidget.h"
 
-class SchemaWidget: public BaseObjectWidget, public Ui::SchemaWidget {
+class LIBPGMODELERUI_API SchemaWidget: public BaseObjectWidget, public Ui::SchemaWidget {
 	private:
 		Q_OBJECT
 

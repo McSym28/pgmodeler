@@ -28,7 +28,7 @@
 #include "baseobject.h"
 #include "function.h"
 
-class EventTrigger: public BaseObject {
+class LIBPGMODELER_API EventTrigger: public BaseObject {
 	private:
 
 		//! \brief Function that is excuted when the event trigger is activated

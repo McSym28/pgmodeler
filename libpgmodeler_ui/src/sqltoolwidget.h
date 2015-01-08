@@ -33,7 +33,7 @@
 #include "findreplacewidget.h"
 #include "codecompletionwidget.h"
 
-class SQLToolWidget: public QWidget, public Ui::SQLToolWidget {
+class LIBPGMODELERUI_API SQLToolWidget: public QWidget, public Ui::SQLToolWidget {
 	private:
 		Q_OBJECT
 

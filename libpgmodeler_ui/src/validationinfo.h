@@ -30,7 +30,7 @@ are emitted during the validation process on ModelValidationHelper class.
 #include "baseobject.h"
 #include <vector>
 
-class ValidationInfo {
+class LIBPGMODELERUI_API ValidationInfo {
 	private:
 		//! \brief Validation type (see constants below)
 		unsigned val_type;
@@ -45,11 +45,11 @@ class ValidationInfo {
 		QStringList errors;
 
 	public:
-		static const unsigned NO_UNIQUE_NAME=0,
-                          BROKEN_REFERENCE=1,
-                          SP_OBJ_BROKEN_REFERENCE=2,
-                          SQL_VALIDATION_ERR=3,
-                          VALIDATION_ABORTED=4;
+        static const unsigned NO_UNIQUE_NAME=0;
+        static const unsigned BROKEN_REFERENCE=1;
+        static const unsigned SP_OBJ_BROKEN_REFERENCE=2;
+        static const unsigned SQL_VALIDATION_ERR=3;
+        static const unsigned VALIDATION_ABORTED=4;
 
 		ValidationInfo(void);
 		ValidationInfo(unsigned val_type, BaseObject *object, vector<BaseObject *> references);

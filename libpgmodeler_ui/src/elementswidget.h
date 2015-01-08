@@ -37,7 +37,7 @@
 Q_DECLARE_METATYPE(IndexElement)
 Q_DECLARE_METATYPE(ExcludeElement)
 
-class ElementsWidget: public QWidget, public Ui::ElementsWidget {
+class LIBPGMODELERUI_API ElementsWidget: public QWidget, public Ui::ElementsWidget {
 	private:
 		Q_OBJECT
 		//! \brief Parent object (table or relationship) from which the columns will be referenced on the elements

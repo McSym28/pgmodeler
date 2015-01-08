@@ -12,6 +12,12 @@ windows:RCC_DIR += src
   target.path = $$LIBDESTDIR
   INSTALLS = target
  }
+
+ windows {
+  !isEmpty(_WIN_MSVC) {
+   QMAKE_CXXFLAGS+="-DLIBPGMODELERUI_EXPORT"
+  }
+ }
 }
 
 macx:DESTDIR=$$LIBDESTDIR

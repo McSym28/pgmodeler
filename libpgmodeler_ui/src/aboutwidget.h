@@ -30,7 +30,7 @@
 #include "ui_aboutwidget.h"
 #include "globalattributes.h"
 
-class AboutWidget: public QWidget, public Ui::AboutWidget {
+class LIBPGMODELERUI_API AboutWidget: public QWidget, public Ui::AboutWidget {
 	private:
 		Q_OBJECT
 

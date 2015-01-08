@@ -25,8 +25,9 @@
 #define CENTRAL_WIDGET_H
 
 #include "ui_centralwidget.h"
+#include "dllapi.h"
 
-class CentralWidget: public QWidget, public Ui::CentralWidget {
+class LIBPGMODELERUI_API CentralWidget: public QWidget, public Ui::CentralWidget {
 	private:
 		Q_OBJECT
 

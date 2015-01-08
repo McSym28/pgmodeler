@@ -33,7 +33,7 @@
 
 using namespace std;
 
-class DatabaseImportHelper: public QObject {
+class LIBPGMODELERUI_API DatabaseImportHelper: public QObject {
 	private:
 		Q_OBJECT
 

@@ -30,7 +30,7 @@
 #include "hinttextwidget.h"
 #include <QTimer>
 
-class DatabaseImportForm: public QDialog, public Ui::DatabaseImportForm {
+class LIBPGMODELERUI_API DatabaseImportForm: public QDialog, public Ui::DatabaseImportForm {
 	private:
 		Q_OBJECT
 
@@ -69,12 +69,12 @@ class DatabaseImportForm: public QDialog, public Ui::DatabaseImportForm {
 		void destroyModelWidget(void);
 
 	public:
-    //! brief Constants used to access the tree widget items data
-		static const unsigned OBJECT_ID=0,
-													OBJECT_TYPE=1,
-													OBJECT_SCHEMA=2,
-													OBJECT_TABLE=3,
-													OBJECT_COUNT=4; //Only for gropus
+        //! brief Constants used to access the tree widget items data
+        static const unsigned OBJECT_ID=0;
+        static const unsigned OBJECT_TYPE=1;
+        static const unsigned OBJECT_SCHEMA=2;
+        static const unsigned OBJECT_TABLE=3;
+        static const unsigned OBJECT_COUNT=4; //Only for gropus
 
 		DatabaseImportForm(QWidget * parent = 0, Qt::WindowFlags f = 0);
 

@@ -2895,7 +2895,7 @@ void DatabaseModel::loadModel(const QString &filename)
               }
               catch(Exception &e)
               {
-								QString info_adicional=QString(QObject::trUtf8("%1 (line: %2)")).arg(xmlparser.getLoadedFilename()).arg(xmlparser.getCurrentElement()->line);
+                QString info_adicional=QString(QObject::trUtf8("%1 (line: %2)")).arg(xmlparser.getLoadedFilename()).arg(xmlparser.getCurrentElement()->line);
                 throw Exception(e.getErrorMessage(),e.getErrorType(),__PRETTY_FUNCTION__,__FILE__,__LINE__, &e, info_adicional);
               }
             }
@@ -3445,7 +3445,7 @@ Function *DatabaseModel::createFunction(void)
 	Parameter param;
 	QString str_aux, elem;
 
-	try
+    try
 	{
 		func=new Function;
 		setBasicAttributes(func);
@@ -3478,7 +3478,7 @@ Function *DatabaseModel::createFunction(void)
 		if(!attribs[ParsersAttributes::ROW_AMOUNT].isEmpty())
 			func->setRowAmount(attribs[ParsersAttributes::ROW_AMOUNT].toInt());
 
-		if(xmlparser.accessElement(XMLParser::CHILD_ELEMENT))
+        if(xmlparser.accessElement(XMLParser::CHILD_ELEMENT))
 		{
 			do
 			{
@@ -3503,7 +3503,7 @@ Function *DatabaseModel::createFunction(void)
 									//when the element found is a TYPE indicates that the function return type is a single one
 									if(xmlparser.getElementName()==ParsersAttributes::TYPE)
 									{
-										type=createPgSQLType();
+                                        type=createPgSQLType();
 										func->setReturnType(type);
 									}
 									//when the element found is a PARAMETER indicates that the function return type is a table
@@ -3520,7 +3520,7 @@ Function *DatabaseModel::createFunction(void)
 						}
 						catch(Exception &e)
 						{
-							xmlparser.restorePosition();
+                            xmlparser.restorePosition();
 							throw Exception(e.getErrorMessage(),e.getErrorType(),__PRETTY_FUNCTION__,__FILE__,__LINE__, &e);
 						}
 					}
@@ -3570,7 +3570,7 @@ Function *DatabaseModel::createFunction(void)
 	}
 	catch(Exception &e)
 	{
-		if(func)
+        if(func)
 		{
 			str_aux=func->getName(true);
 			delete(func);
@@ -3699,7 +3699,7 @@ TypeAttribute DatabaseModel::createTypeAttribute(void)
 
 PgSQLType DatabaseModel::createPgSQLType(void)
 {
-	attribs_map attribs;
+    attribs_map attribs;
 	unsigned length=1, dimension=0, type_idx=0;
 	int precision=-1;
 	QString name;
@@ -3741,16 +3741,17 @@ PgSQLType DatabaseModel::createPgSQLType(void)
 	type_idx=PgSQLType::getBaseTypeIndex(name);
 	if(type_idx!=PgSQLType::null)
 	{
-		return(PgSQLType(name,length,dimension,precision,with_timezone,interv_type, spatial_type));
+        return(PgSQLType(name,length,dimension,precision,with_timezone,interv_type, spatial_type));
 	}
 	else
 	{
-		//Raises an error if the referenced type name doesn't exists
+        //Raises an error if the referenced type name doesn't exists
 		if(PgSQLType::getUserTypeIndex(name,nullptr,this) == BaseType::null)
 			throw Exception(ERR_REF_INEXIST_USER_TYPE,__PRETTY_FUNCTION__,__FILE__,__LINE__);
 
 		type_idx=PgSQLType::getUserTypeIndex(name, ptype);
-		return(PgSQLType(type_idx,length,dimension,precision,with_timezone,interv_type,spatial_type));
+
+        return(PgSQLType(type_idx,length,dimension,precision,with_timezone,interv_type,spatial_type));
 	}
 }
 

@@ -32,7 +32,7 @@
 #include "databasemodel.h"
 #include <algorithm>
 
-class AppearanceConfigWidget: public QWidget, public Ui::AppearanceConfigWidget, public BaseConfigWidget {
+class LIBPGMODELERUI_API AppearanceConfigWidget: public QWidget, public Ui::AppearanceConfigWidget, public BaseConfigWidget {
 	private:
 		Q_OBJECT
 

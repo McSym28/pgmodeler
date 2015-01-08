@@ -31,7 +31,7 @@
 #include "textboxview.h"
 #include "roundedrectitem.h"
 
-class TableTitleView: public BaseObjectView
+class LIBOBJRENDERER_API TableTitleView: public BaseObjectView
 {
 	private:
 		Q_OBJECT

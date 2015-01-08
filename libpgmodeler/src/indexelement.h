@@ -29,7 +29,7 @@
 #include "collation.h"
 #include "element.h"
 
-class IndexElement: public Element {
+class LIBPGMODELER_API IndexElement: public Element {
 	private:
 		//! \brief Collation referenced by the element
 		Collation *collation;

@@ -110,11 +110,11 @@ void AppearanceConfigWidget::loadExampleModel(void)
 
 		if(model->getObjectCount()==0)
 		{
-			model->loadModel(GlobalAttributes::CONFIGURATIONS_DIR +
-											 GlobalAttributes::DIR_SEPARATOR +
-											 GlobalAttributes::EXAMPLE_MODEL);
+            model->loadModel(GlobalAttributes::CONFIGURATIONS_DIR +
+                             GlobalAttributes::DIR_SEPARATOR +
+                             GlobalAttributes::EXAMPLE_MODEL);
 
-			count=model->getObjectCount(OBJ_TABLE);
+            count=model->getObjectCount(OBJ_TABLE);
 			for(i=0; i < count; i++)
 			{
 				tab=new TableView(model->getTable(i));

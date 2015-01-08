@@ -32,7 +32,7 @@
 #include "databasemodel.h"
 #include "messagebox.h"
 
-class PgSQLTypeWidget: public QWidget, public Ui::PgSQLTypeWidget {
+class LIBPGMODELERUI_API PgSQLTypeWidget: public QWidget, public Ui::PgSQLTypeWidget {
 	private:
 		Q_OBJECT
 

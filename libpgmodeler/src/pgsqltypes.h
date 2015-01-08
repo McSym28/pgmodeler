@@ -34,7 +34,7 @@
 
 using namespace std;
 
-class BaseType{
+class LIBPGMODELER_API BaseType{
 	private:
 		static const unsigned types_count=237;
 
@@ -82,7 +82,7 @@ class BaseType{
 		static QString getTypeString(unsigned type_id);
 };
 
-class ActionType: public BaseType{
+class LIBPGMODELER_API ActionType: public BaseType{
 	private:
 		//! \brief Initial position of the names related to the class on BaseType::type_list
     static const unsigned offset=1;
@@ -107,7 +107,7 @@ class ActionType: public BaseType{
 		unsigned operator = (const QString &type_name);
 };
 
-class ConstraintType: public BaseType{
+class LIBPGMODELER_API ConstraintType: public BaseType{
 	private:
     static const unsigned offset=6;
     static const unsigned types_count=5;
@@ -128,7 +128,7 @@ class ConstraintType: public BaseType{
 		unsigned operator = (const QString &type_name);
 };
 
-class EventType: public BaseType{
+class LIBPGMODELER_API EventType: public BaseType{
 	private:
     static const unsigned offset=11;
     static const unsigned types_count=5;
@@ -154,7 +154,7 @@ class EventType: public BaseType{
 		bool operator < (unsigned type_id) const;
 };
 
-class ExecutionType: public BaseType{
+class LIBPGMODELER_API ExecutionType: public BaseType{
 	private:
     static const unsigned offset=16;
     static const unsigned types_count=2;
@@ -172,7 +172,7 @@ class ExecutionType: public BaseType{
 		unsigned operator = (const QString &type_name);
 };
 
-class FunctionType: public BaseType{
+class LIBPGMODELER_API FunctionType: public BaseType{
 	private:
     static const unsigned offset=18;
     static const unsigned types_count=3;
@@ -191,7 +191,7 @@ class FunctionType: public BaseType{
 		unsigned operator = (const QString &type_name);
 };
 
-class IndexingType: public BaseType{
+class LIBPGMODELER_API IndexingType: public BaseType{
 	private:
     static const unsigned offset=21;
     static const unsigned types_count=5;
@@ -212,7 +212,7 @@ class IndexingType: public BaseType{
 		unsigned operator = (const QString &type_name);
 };
 
-class IntervalType: public BaseType{
+class LIBPGMODELER_API IntervalType: public BaseType{
 	private:
 		static const unsigned offset=135;
     static const unsigned types_count=13;
@@ -241,7 +241,7 @@ class IntervalType: public BaseType{
 		unsigned operator = (const QString &type_name);
 };
 
-class SpatialType: public BaseType{
+class LIBPGMODELER_API SpatialType: public BaseType{
 	private:
 		unsigned variation;
 		static const unsigned offset=226;
@@ -284,7 +284,7 @@ class SpatialType: public BaseType{
 	 When the user creates a Type, Sequence, Domain, even a Table,
 	 it can be used as a type on certain configurations so this
 	 class implements a basic structure to control these types */
-class UserTypeConfig {
+class LIBPGMODELER_API UserTypeConfig {
 	protected:
 		//! \brief Pointer to the instance of the user defined type
 		void *ptype;
@@ -304,15 +304,14 @@ class UserTypeConfig {
 		bool invalidated;
 
 	public:
-    static const unsigned BASE_TYPE=1, //! \brief The type refers to a user-defined base type (class Type)
-													DOMAIN_TYPE=2, //! \brief The type refers to a domain
-													TABLE_TYPE=4, //! \brief The type refers to a table
-													SEQUENCE_TYPE=8, //! \brief The type refers to a sequence
-													VIEW_TYPE=16, //! \brief The type refers to a view
-													EXTENSION_TYPE=32, //! \brief The type refers to a extension used as datatype
+        static const unsigned BASE_TYPE=1; //! \brief The type refers to a user-defined base type (class Type)
+        static const unsigned DOMAIN_TYPE=2; //! \brief The type refers to a domain
+        static const unsigned TABLE_TYPE=4; //! \brief The type refers to a table
+        static const unsigned SEQUENCE_TYPE=8; //! \brief The type refers to a sequence
+        static const unsigned VIEW_TYPE=16; //! \brief The type refers to a view
+        static const unsigned EXTENSION_TYPE=32; //! \brief The type refers to a extension used as datatype
 
-													//! \brief This constant refers to all types above and must be used only on type searches
-													ALL_USER_TYPES=63;
+        static const unsigned ALL_USER_TYPES=63; //! \brief This constant refers to all types above and must be used only on type searches
 
 		UserTypeConfig(void)
 		{ name=""; ptype=nullptr; pmodel=nullptr; invalidated=false; type_conf=BASE_TYPE; }
@@ -320,7 +319,7 @@ class UserTypeConfig {
 		friend class PgSQLType;
 };
 
-class PgSQLType: public BaseType{
+class LIBPGMODELER_API PgSQLType: public BaseType{
 	private:
     static const unsigned offset=26;
 		static const unsigned types_count=109;
@@ -382,6 +381,8 @@ class PgSQLType: public BaseType{
 		/*! \brief Creates a type from a simple string containing the name of the type.
 				\note This method works in different way than PgSQLType::parserString() */
 		PgSQLType(const QString &type_name);
+
+        PgSQLType(const char *type_name);
 
 		//! \brief Creates a type from a pointer that references an user defined type (Type class)
 		PgSQLType(void *ptype);
@@ -461,12 +462,15 @@ class PgSQLType: public BaseType{
 		unsigned operator << (void *ptype);
 		unsigned operator = (unsigned type_id);
 		unsigned operator = (const QString &type_name);
-		bool operator == (unsigned type_idx);
+        unsigned operator = (const char *type_name);
+        bool operator == (unsigned type_idx);
 		bool operator == (PgSQLType type);
-		bool operator == (const QString &type_name);
+        bool operator == (const QString &type_name);
+        bool operator == (const char *type_name);
 		bool operator == (void *ptype);
 		bool operator != (const QString &type_name);
-		bool operator != (PgSQLType type);
+        bool operator != (const char *type_name);
+        bool operator != (PgSQLType type);
 		bool operator != (unsigned type_idx);
 
 		/*! \brief Returns the pointer to the user defined type which denotes the
@@ -494,7 +498,7 @@ class PgSQLType: public BaseType{
     friend class DatabaseModel;
 };
 
-class BehaviorType: public BaseType{
+class LIBPGMODELER_API BehaviorType: public BaseType{
 	private:
 		static const unsigned offset=148;
     static const unsigned types_count=3;
@@ -513,7 +517,7 @@ class BehaviorType: public BaseType{
 		unsigned operator = (const QString &type_name);
 };
 
-class SecurityType: public BaseType{
+class LIBPGMODELER_API SecurityType: public BaseType{
 	private:
 		static const unsigned offset=151;
     static const unsigned types_count=2;
@@ -531,7 +535,7 @@ class SecurityType: public BaseType{
 		unsigned operator = (const QString &type_name);
 };
 
-class LanguageType: public BaseType{
+class LIBPGMODELER_API LanguageType: public BaseType{
 	private:
 		static const unsigned offset=153;
     static const unsigned types_count=6;
@@ -553,7 +557,7 @@ class LanguageType: public BaseType{
 		unsigned operator = (const QString &type_name);
 };
 
-class EncodingType: public BaseType{
+class LIBPGMODELER_API EncodingType: public BaseType{
 	private:
 		static const unsigned offset=159;
     static const unsigned types_count=41;
@@ -573,7 +577,7 @@ class EncodingType: public BaseType{
 		bool operator != (unsigned tipo_id);
 };
 
-class StorageType: public BaseType{
+class LIBPGMODELER_API StorageType: public BaseType{
 	private:
 		static const unsigned offset=200;
     static const unsigned types_count=4;
@@ -596,7 +600,7 @@ class StorageType: public BaseType{
 		bool operator != (StorageType type);
 };
 
-class MatchType: public BaseType{
+class LIBPGMODELER_API MatchType: public BaseType{
 	private:
 		static const unsigned offset=204;
     static const unsigned types_count=3;
@@ -615,7 +619,7 @@ class MatchType: public BaseType{
 		unsigned operator = (const QString &type_name);
 };
 
-class DeferralType: public BaseType{
+class LIBPGMODELER_API DeferralType: public BaseType{
 	private:
 		static const unsigned offset=207;
     static const unsigned types_count=2;
@@ -633,7 +637,7 @@ class DeferralType: public BaseType{
 		unsigned operator = (const QString &type_name);
 };
 
-class CategoryType: public BaseType{
+class LIBPGMODELER_API CategoryType: public BaseType{
 	private:
 		static const unsigned offset=209;
     static const unsigned types_count=14;
@@ -663,7 +667,7 @@ class CategoryType: public BaseType{
 		unsigned operator = (const QString &type_name);
 };
 
-class FiringType: public BaseType{
+class LIBPGMODELER_API FiringType: public BaseType{
 	private:
 		static const unsigned offset=223;
     static const unsigned types_count=3;
@@ -682,7 +686,7 @@ class FiringType: public BaseType{
 		unsigned operator = (const QString &type_name);
 };
 
-class EventTriggerType: public BaseType{
+class LIBPGMODELER_API EventTriggerType: public BaseType{
 	private:
 		static const unsigned offset=234;
 		static const unsigned types_count=3;

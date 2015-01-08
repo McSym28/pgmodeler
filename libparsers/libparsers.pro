@@ -10,6 +10,12 @@ TARGET = parsers
   target.path = $$LIBDESTDIR
   INSTALLS = target
  }
+
+ windows {
+  !isEmpty(_WIN_MSVC) {
+   QMAKE_CXXFLAGS+="-DLIBPARSERS_EXPORT"
+  }
+ }
 }
 
 macx:DESTDIR=$$LIBDESTDIR

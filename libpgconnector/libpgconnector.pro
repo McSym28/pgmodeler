@@ -11,6 +11,12 @@ OBJECTS_DIR = obj
   target.path = $$LIBDESTDIR
   INSTALLS = target
  }
+
+ windows {
+  !isEmpty(_WIN_MSVC) {
+   QMAKE_CXXFLAGS+="-DLIBPGCONNECTOR_EXPORT"
+  }
+ }
 }
 
 macx:DESTDIR=$$LIBDESTDIR

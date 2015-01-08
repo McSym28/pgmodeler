@@ -31,7 +31,7 @@
 #include "modelexporthelper.h"
 #include "hinttextwidget.h"
 
-class ModelExportForm: public QDialog, public Ui::ModelExportForm {
+class LIBPGMODELERUI_API ModelExportForm: public QDialog, public Ui::ModelExportForm {
 	private:
 		Q_OBJECT
 

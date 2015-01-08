@@ -32,19 +32,19 @@ This class is the basis for the reverse engineering feature.
 #include <QTextStream>
 #include <QApplication>
 
-class Catalog {
+class LIBPGCONNECTOR_API Catalog {
 	private:
 		SchemaParser schparser;
 
-		static const QString QUERY_LIST,	//! \brief Executes a list command on catalog
-		QUERY_ATTRIBS, //! \brief Executes a attribute retrieving command on catalog
-		CATALOG_SCH_DIR, //! \brief Default catalog schemas directory
-		PGSQL_TRUE, //! \brief Replacement for true 't' boolean value
-		PGSQL_FALSE, //! \brief Replacement for false 'f' boolean value
-		BOOL_FIELD,     //! \brief Suffix for boolean fields.
+        static const QString QUERY_LIST;	//! \brief Executes a list command on catalog
+        static const QString QUERY_ATTRIBS; //! \brief Executes a attribute retrieving command on catalog
+        static const QString CATALOG_SCH_DIR; //! \brief Default catalog schemas directory
+        static const QString PGSQL_TRUE; //! \brief Replacement for true 't' boolean value
+        static const QString PGSQL_FALSE; //! \brief Replacement for false 'f' boolean value
+        static const QString BOOL_FIELD;     //! \brief Suffix for boolean fields.
 
 		//! \brief This pattern matches the PostgreSQL array values in format [n:n]={a,b,c,d,...} or {a,b,c,d,...}
-		ARRAY_PATTERN;
+        static const QString ARRAY_PATTERN;
 
 		/*! \brief Stores in comma seperated way the oids of all objects created by extensions. This
 		attribute is use when filtering objects that are created by extensions */
@@ -115,20 +115,20 @@ class Catalog {
 		Catalog(void);
 
 		//! \brief Excludes the system objects from listing
-		static const unsigned EXCL_SYSTEM_OBJS=1,
+        static const unsigned EXCL_SYSTEM_OBJS=1;
 
 		//! \brief Excludes the extension generated objects from listing
-		EXCL_EXTENSION_OBJS=2,
+        static const unsigned EXCL_EXTENSION_OBJS=2;
 
 		//! \brief Excludes the builtin array types.
-		EXCL_BUILTIN_ARRAY_TYPES=4,
+        static const unsigned EXCL_BUILTIN_ARRAY_TYPES=4;
 
 		/*! \brief Shows only system objects. Using this filter will disable the other two filters.
 		Using this filter implies the listing of extension objects */
-		LIST_ONLY_SYS_OBJS=8,
+        static const unsigned LIST_ONLY_SYS_OBJS=8;
 
 		//! \brief Shows all objects including system objects and extension object.
-		LIST_ALL_OBJS=16;
+        static const unsigned LIST_ALL_OBJS=16;
 
 		//! \brief Changes the current connection used by the catalog
 		void setConnection(Connection &conn);

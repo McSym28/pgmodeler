@@ -27,7 +27,7 @@
 
 #include "baseobject.h"
 
-class TypeAttribute: public BaseObject {
+class LIBPGMODELER_API TypeAttribute: public BaseObject {
 	private:
 		PgSQLType type;
 

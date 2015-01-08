@@ -31,7 +31,7 @@
 #include "pgsqltypewidget.h"
 #include "objecttablewidget.h"
 
-class AggregateWidget: public BaseObjectWidget, public Ui::AggregateWidget {
+class LIBPGMODELERUI_API AggregateWidget: public BaseObjectWidget, public Ui::AggregateWidget {
 	private:
 		Q_OBJECT
 

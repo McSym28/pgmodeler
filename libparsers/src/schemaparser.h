@@ -34,7 +34,7 @@
 #include "xmlparser.h"
 #include "attribsmap.h"
 
-class SchemaParser {
+class LIBPARSERS_API SchemaParser {
 	private:
 		/*! \brief Indicates that the parser should ignore unknown
 		 attributes avoiding raising exceptions */
@@ -44,46 +44,46 @@ class SchemaParser {
 		 attributes avoiding raising exceptions */
 		bool ignore_empty_atribs;
 
-		static const char CHR_COMMENT,			//! \brief Character that starts a comment
-											CHR_LINE_END,			//! \brief Character that indicates end of line
-											CHR_SPACE,        //! \brief Character that indicates spacing
-											CHR_TABULATION,   //! \brief Character that indicates tabulation
-											CHR_INI_ATTRIB,   //! \brief Character that indicates a reference to an attribute
-											CHR_MID_ATTRIB,   //! \brief Character that delimits on the left the attribute name
-											CHR_END_ATTRIB,   //! \brief Character that delimits on the right the attribute name
-											CHR_INI_CONDITIONAL,//! \brief Character that starts a conditional instruction
-											CHR_INI_METACHAR,   //! \brief Character that starts a metacharacter
-											CHR_INI_PURETEXT,   //! \brief Character that starts a puretext
-                      CHR_END_PURETEXT,   //! \brief Character that ends a puretext
-                      CHR_INI_CEXPR,      //!brief Character that starts a comparison expression
-                      CHR_END_CEXPR,      //!brief Character that ends a comparison expression
-                      CHR_VAL_DELIM;      //!brief Character that delimiters a value (string)
+        static const char CHR_COMMENT;			//! \brief Character that starts a comment
+        static const char CHR_LINE_END;			//! \brief Character that indicates end of line
+        static const char CHR_SPACE;        //! \brief Character that indicates spacing
+        static const char CHR_TABULATION;   //! \brief Character that indicates tabulation
+        static const char CHR_INI_ATTRIB;   //! \brief Character that indicates a reference to an attribute
+        static const char CHR_MID_ATTRIB;   //! \brief Character that delimits on the left the attribute name
+        static const char CHR_END_ATTRIB;   //! \brief Character that delimits on the right the attribute name
+        static const char CHR_INI_CONDITIONAL;//! \brief Character that starts a conditional instruction
+        static const char CHR_INI_METACHAR;   //! \brief Character that starts a metacharacter
+        static const char CHR_INI_PURETEXT;   //! \brief Character that starts a puretext
+        static const char CHR_END_PURETEXT;   //! \brief Character that ends a puretext
+        static const char CHR_INI_CEXPR;      //!brief Character that starts a comparison expression
+        static const char CHR_END_CEXPR;      //!brief Character that ends a comparison expression
+        static const char CHR_VAL_DELIM;      //!brief Character that delimiters a value (string)
 
-    //! \brief Tokens related to conditional instructions and operators
-		static const QString	TOKEN_IF,  // %if
-													TOKEN_THEN,// %then
-													TOKEN_ELSE,// %else
-													TOKEN_END, // %end
-													TOKEN_OR,  // %or
-													TOKEN_NOT, // %not
-                          TOKEN_AND, // %and
-                          TOKEN_DEFINE; //%define
+        //! \brief Tokens related to conditional instructions and operators
+        static const QString	TOKEN_IF;  // %if
+        static const QString	TOKEN_THEN;// %then
+        static const QString	TOKEN_ELSE;// %else
+        static const QString	TOKEN_END; // %end
+        static const QString	TOKEN_OR;  // %or
+        static const QString	TOKEN_NOT; // %not
+        static const QString	TOKEN_AND; // %and
+        static const QString	TOKEN_DEFINE; //%define
 
 
 		//! \brief Tokens related to metacharacters
-		static const QString	TOKEN_META_SP,// $sp (space)
-													TOKEN_META_BR,// $br (line break)
-													TOKEN_META_TB,// $tb (tabulation)
-													TOKEN_META_OB,// $ob (open bracket '[')
-													TOKEN_META_CB;// $cb (close bracket ']')
+        static const QString	TOKEN_META_SP;// $sp (space)
+        static const QString	TOKEN_META_BR;// $br (line break)
+        static const QString	TOKEN_META_TB;// $tb (tabulation)
+        static const QString	TOKEN_META_OB;// $ob (open bracket '[')
+        static const QString	TOKEN_META_CB;// $cb (close bracket ']')
 
     //! \brief Tokens related to comparison expressions
-    static const QString	TOKEN_EQ_OP,// == (equal)
-                          TOKEN_NE_OP,// != (not equal)
-                          TOKEN_GT_OP,// > (greater than)
-                          TOKEN_LT_OP,// < (less than)
-                          TOKEN_GT_EQ_OP,// >= (greater or equal to)
-                          TOKEN_LT_EQ_OP;// <= (less or equal to)
+        static const QString	TOKEN_EQ_OP;// == (equal)
+        static const QString	TOKEN_NE_OP;// != (not equal)
+        static const QString	TOKEN_GT_OP;// > (greater than)
+        static const QString	TOKEN_LT_OP;// < (less than)
+        static const QString	TOKEN_GT_EQ_OP;// >= (greater or equal to)
+        static const QString	TOKEN_LT_EQ_OP;// <= (less or equal to)
 
 
 		//! \brief Get an attribute name from the buffer on the current position
@@ -168,15 +168,15 @@ class SchemaParser {
 	public:
 
 		//! \brief Constants used to refernce PostgreSQL versions.
-		static const QString PGSQL_VERSION_90,
-												 PGSQL_VERSION_91,
-												 PGSQL_VERSION_92,
-												 PGSQL_VERSION_93,
-												 PGSQL_VERSION_94;
+        static const QString PGSQL_VERSION_90;
+        static const QString PGSQL_VERSION_91;
+        static const QString PGSQL_VERSION_92;
+        static const QString PGSQL_VERSION_93;
+        static const QString PGSQL_VERSION_94;
 
 		//! \brief Constants used to get a specific object definition
-    static const unsigned SQL_DEFINITION=0,
-													XML_DEFINITION=1;
+        static const unsigned SQL_DEFINITION=0;
+        static const unsigned XML_DEFINITION=1;
 
 		SchemaParser(void);
 

@@ -10,6 +10,12 @@ TARGET = pgmodeler
   target.path = $$LIBDESTDIR
   INSTALLS = target
  }
+
+ windows {
+  !isEmpty(_WIN_MSVC) {
+   QMAKE_CXXFLAGS+="-DLIBPGMODELER_EXPORT"
+  }
+ }
 }
 
 macx:DESTDIR=$$LIBDESTDIR

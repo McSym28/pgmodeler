@@ -32,7 +32,7 @@
 #include "pluginsconfigwidget.h"
 #include "relationshipconfigwidget.h"
 
-class ConfigurationForm: public QDialog, public Ui::ConfigurationForm {
+class LIBPGMODELERUI_API ConfigurationForm: public QDialog, public Ui::ConfigurationForm {
 	private:
 		Q_OBJECT
 
@@ -44,11 +44,11 @@ class ConfigurationForm: public QDialog, public Ui::ConfigurationForm {
 		RelationshipConfigWidget *relationships_conf;
 
 	public:
-		static const int	GENERAL_CONF_WGT=0,
-											RELATIONSHIPS_CONF_WGT=1,
-											APPEARANCE_CONF_WGT=2,
-											CONNECTIONS_CONF_WGT=3,
-											PLUGINS_CONF_WGT=4;
+        static const int	GENERAL_CONF_WGT=0;
+        static const int	RELATIONSHIPS_CONF_WGT=1;
+        static const int	APPEARANCE_CONF_WGT=2;
+        static const int	CONNECTIONS_CONF_WGT=3;
+        static const int	PLUGINS_CONF_WGT=4;
 
 		ConfigurationForm(QWidget * parent = 0, Qt::WindowFlags f = 0);
 

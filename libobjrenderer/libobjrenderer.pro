@@ -10,6 +10,12 @@ TARGET = objrenderer
   target.path = $$LIBDESTDIR
   INSTALLS = target
  }
+
+ windows {
+  !isEmpty(_WIN_MSVC) {
+   QMAKE_CXXFLAGS+="-DLIBOBJRENDERER_EXPORT"
+  }
+ }
 }
 
 macx:DESTDIR=$$LIBDESTDIR

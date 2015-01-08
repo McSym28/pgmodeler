@@ -30,7 +30,7 @@
 #include "connection.h"
 #include "messagebox.h"
 
-class ConnectionsConfigWidget: public QWidget, public Ui::ConnectionsConfigWidget, public BaseConfigWidget {
+class LIBPGMODELERUI_API ConnectionsConfigWidget: public QWidget, public Ui::ConnectionsConfigWidget, public BaseConfigWidget {
 	private:
 		Q_OBJECT
 

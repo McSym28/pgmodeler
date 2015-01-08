@@ -36,7 +36,7 @@
 #include <QMetaType>
 Q_DECLARE_METATYPE(Reference)
 
-class ViewWidget: public BaseObjectWidget, public Ui::ViewWidget {
+class LIBPGMODELERUI_API ViewWidget: public BaseObjectWidget, public Ui::ViewWidget {
 	private:
 		Q_OBJECT
 
