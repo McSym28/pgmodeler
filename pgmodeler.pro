@@ -31,6 +31,7 @@ windows {
  }
  win*-msvc* {
   _WIN_MSVC = 1
+  QMAKE_CXXFLAGS+="-D__PRETTY_FUNCTION__=__FUNCSIG__"
  }
 
  isEmpty(_WIN64) {
